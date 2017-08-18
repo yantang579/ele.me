@@ -293,14 +293,13 @@
               padding: 0 12px
               line-height: 24px
               font-size: 12px
-
-  .detial-close
-    position: relative
-    width: 32px
-    height: 32px
-    margin: -64px auto 0 auto
-    clear: both
-    font-size: 32px
+      .detial-close
+        position: relative
+        width: 32px
+        height: 32px
+        margin: -64px auto 0 auto
+        clear: both
+        font-size: 32px
 
 
 </style>

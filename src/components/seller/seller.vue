@@ -32,6 +32,7 @@
         </li>
       </ul>
     </div>
+    <split></split>
     <div class="bulletin">
       <h1 class="title">公告与活动</h1>
       <div class="content border-1px">{{seller.bulletin}}</div>
@@ -42,6 +43,7 @@
         </li>
       </ul>
     </div>
+    <split></split>
     <div class="pics">
       <h1 class="title">商家实景</h1>
       <div class="pics-wrapper">
@@ -52,6 +54,7 @@
         </ul>
       </div>
     </div>
+    <split></split>
     <div class="info">
       <h1 class="title border-1px">商家信息</h1>
       <div class="content">
@@ -65,6 +68,7 @@
 
 <script type="text/ecmascript-6">
   import star from '../star/star.vue';
+  import split from '../split/split.vue';
 
   export default {
     created() {
@@ -86,7 +90,8 @@
       }
     },
     components: {
-      star
+      star,
+      split
     }
   };
 </script>
@@ -97,6 +102,7 @@
   .seller
     position: absolute
     top: 174px
+    bottom: 0
     left: 0
     width: 100%
     overflow: hidden

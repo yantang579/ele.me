@@ -70,7 +70,7 @@
       .star-item
         height: 15px
         width: 15px
-        margin-right: 16px
+        margin-right: 8px
         background-size: 15px 15px
         &:last-child
           margin-right: 0

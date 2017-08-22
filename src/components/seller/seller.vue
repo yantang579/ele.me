@@ -32,7 +32,10 @@
         </li>
       </ul>
     </div>
+<<<<<<< HEAD
     <split></split>
+=======
+>>>>>>> 660e63c296318d4dea73c952d1ceb9080b31bda7
     <div class="bulletin">
       <h1 class="title">公告与活动</h1>
       <div class="content border-1px">{{seller.bulletin}}</div>
@@ -43,7 +46,10 @@
         </li>
       </ul>
     </div>
+<<<<<<< HEAD
     <split></split>
+=======
+>>>>>>> 660e63c296318d4dea73c952d1ceb9080b31bda7
     <div class="pics">
       <h1 class="title">商家实景</h1>
       <div class="pics-wrapper">
@@ -54,7 +60,10 @@
         </ul>
       </div>
     </div>
+<<<<<<< HEAD
     <split></split>
+=======
+>>>>>>> 660e63c296318d4dea73c952d1ceb9080b31bda7
     <div class="info">
       <h1 class="title border-1px">商家信息</h1>
       <div class="content">
@@ -68,7 +77,10 @@
 
 <script type="text/ecmascript-6">
   import star from '../star/star.vue';
+<<<<<<< HEAD
   import split from '../split/split.vue';
+=======
+>>>>>>> 660e63c296318d4dea73c952d1ceb9080b31bda7
 
   export default {
     created() {
@@ -90,8 +102,12 @@
       }
     },
     components: {
+<<<<<<< HEAD
       star,
       split
+=======
+      star
+>>>>>>> 660e63c296318d4dea73c952d1ceb9080b31bda7
     }
   };
 </script>
@@ -102,7 +118,10 @@
   .seller
     position: absolute
     top: 174px
+<<<<<<< HEAD
     bottom: 0
+=======
+>>>>>>> 660e63c296318d4dea73c952d1ceb9080b31bda7
     left: 0
     width: 100%
     overflow: hidden

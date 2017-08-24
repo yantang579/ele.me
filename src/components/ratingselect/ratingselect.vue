@@ -21,50 +21,47 @@
   const NEGATIVE = 2;
 
   export default {
+    data() {
+      return {
+        desc: {
+          all: '全部',
+          positive: '满意',
+          negative: '不满意'
+        },
+        selectType: ALL,
+        onlyContent: false
+      };
+    },
     props: {
       ratings: {
         type: Array,
         default() {
           return [];
         }
-      },
-      selectType: {
-        type: Number,
-        default: ALL
-      },
-      onlyContent: {
-        type: Boolean,
-        default: false
-      },
-      desc: {
-        type: Object,
-        default() {
-          return {
-            all: '全部',
-            positive: '满意',
-            negative: '不满意'
-          };
-        }
       }
     },
     computed: {
+      //  计算满意的评论个数，返回的是rateType为positive的评论集合，计算positive.length得到个数
       positives() {
         return this.ratings.filter((rating) => {
-          rating.rateType === POSITIVE;
+          return rating.rateType === POSITIVE;
         });
       },
+      //  计算不满意的评论个数
       negatives() {
         return this.ratings.filter((rating) => {
-          rating.rateType === NEGATIVE;
+          return rating.rateType === NEGATIVE;
         });
       }
     },
     methods: {
       select(type, event) {
         this.selectType = type;
+        this.$emit('selectTypeKey', type);
       },
       toggleContent(event) {
         this.onlyContent = !this.onlyContent;
+        this.$emit('toggleContentKey', this.onlyContent);
       }
     }
   };

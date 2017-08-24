@@ -27,7 +27,31 @@
       </div>
     </div>
     <split></split>
-    <ratingselect :ratings="ratings"></ratingselect>
+    <ratingselect v-on:selectTypeKey="theSelectType" v-on:toggleContentKey="IsonlyContent"
+                  :ratings="ratings"></ratingselect>
+    <p>{{total}}</p>
+    <p>{{content}}</p>
+    <div class="rating-wrapper">
+      <ul>
+        <li class="rating-item border-1px" v-for="rating in ratings">
+          <div class="avatar">
+            <img width="28px" height="28px" :src="rating.avatar">
+          </div>
+          <div class="content">
+            <h1 class="name">{{rating.username}}</h1>
+            <div class="star-wrapper">
+              <star :size="24" :score="rating.score"></star>
+              <span class="delivery" v-show="rating.deliveryTime">{{rating.deliveryTime}}分钟送达</span>
+            </div>
+            <p class="text">{{rating.text}}</p>
+            <div class="recommend" v-show="rating.recommend && rating.recommend.length">
+              <span class="icon-thumb_up"></span>
+              <span class="item" v-for="item in rating.recommend">{{item}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -37,16 +61,25 @@
   import ratingselect from '../ratingselect/ratingselect.vue';
 
   const ERR_OK = 0;
-
   export default {
     data() {
       return {
-        ratings: []
+        ratings: [],
+        total: 0,
+        content: false
       };
     },
     props: {
       seller: {
         type: Object
+      }
+    },
+    methods: {
+      theSelectType: function (type) {
+        this.total = type;
+      },
+      IsonlyContent: function (onlyContent) {
+        this.content = onlyContent;
       }
     },
     created() {
@@ -68,6 +101,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import "../../common/stylus/mixin.styl";
+
   .ratings
     position: absolute
     top: 174px
@@ -130,5 +165,41 @@
             color: rgb(157, 153, 159)
             line-height: 18px
 
-
+    .rating-wrapper
+      .rating-item
+        display: flex
+        padding: 18px 0
+        margin: 0 18px
+        font-size: 0px
+        border-1px(rgba(7, 17, 27, 0.1))
+        .avatar
+          height: 28px
+          width: 28px
+          flex: 0 0 28px
+          margin-right: 12px
+          .img
+            border-radius: 50%
+        .content
+          .name
+            font-size: 10px
+            line-height: 12px
+            color: rgb(7, 17, 27)
+            padding-bottom: 4px
+          .star-wrapper
+            padding-bottom: 6px
+            .star
+              display: inline-block
+              vertical-align: top
+              padding-right: 6px
+            .delivery
+              display: inline-block
+              vertical-align: top
+              font-size: 10px
+              color: rgb(147, 153, 159)
+              line-height: 12px
+          .text
+            padding-bottom: 8px
+            font-size: 12px
+            line-height: 18px
+            color: rgb(7, 17, 27)
 </style>

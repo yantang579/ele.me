@@ -29,11 +29,9 @@
     <split></split>
     <ratingselect v-on:selectTypeKey="theSelectType" v-on:toggleContentKey="IsonlyContent"
                   :ratings="ratings"></ratingselect>
-    <p>{{total}}</p>
-    <p>{{content}}</p>
     <div class="rating-wrapper">
       <ul>
-        <li class="rating-item border-1px" v-for="rating in ratings">
+        <li class="rating-item border-1px" v-for="rating in ratings" v-show="needShow(rating.rateType, rating.text)">
           <div class="avatar">
             <img width="28px" height="28px" :src="rating.avatar">
           </div>
@@ -48,6 +46,7 @@
               <span class="icon-thumb_up"></span>
               <span class="item" v-for="item in rating.recommend">{{item}}</span>
             </div>
+            <div class="time">{{rating.rateTime}}</div>
           </div>
         </li>
       </ul>
@@ -61,12 +60,15 @@
   import ratingselect from '../ratingselect/ratingselect.vue';
 
   const ERR_OK = 0;
+  const ALL = 0;
+  const POSITIVE = 1;
+  const NEGATIVE = 2;
   export default {
     data() {
       return {
         ratings: [],
-        total: 0,
-        content: false
+        ratingType: 0,
+        onlyContent: false
       };
     },
     props: {
@@ -76,10 +78,20 @@
     },
     methods: {
       theSelectType: function (type) {
-        this.total = type;
+        this.ratingType = type;
       },
       IsonlyContent: function (onlyContent) {
-        this.content = onlyContent;
+        this.onlyContent = onlyContent;
+      },
+      needShow(type, text) {
+        if (this.onlyContent && !text) {
+          return false;
+        }
+        if (this.ratingType === ALL) {
+          return true;
+        } else {
+          return this.ratingType === type;
+        }
       }
     },
     created() {
@@ -166,10 +178,10 @@
             line-height: 18px
 
     .rating-wrapper
+      padding: 0 18px
       .rating-item
         display: flex
         padding: 18px 0
-        margin: 0 18px
         font-size: 0px
         border-1px(rgba(7, 17, 27, 0.1))
         .avatar
@@ -180,6 +192,7 @@
           .img
             border-radius: 50%
         .content
+          flex: 1
           .name
             font-size: 10px
             line-height: 12px
@@ -202,4 +215,30 @@
             font-size: 12px
             line-height: 18px
             color: rgb(7, 17, 27)
+          .recommend
+            line-height: 16px
+            font-size: 0
+            .icon-thumb_up
+              display: inline-block
+              vertical-align: top
+              font-size: 12px
+              color: rgb(0, 160, 220)
+              padding-right: 6px
+            .item
+              display: inline-block
+              padding: 0 6px
+              margin-right: 8px
+              overflow: hidden
+              border: 1px solid rgba(7, 17, 27, 0.1)
+              border-radius: 1px
+              font-size: 9px
+              color: rgb(147, 153, 159)
+          .time
+            position: absolute
+            top: 18px
+            right: 0px
+            font-size: 10px
+            color: rgb(147, 153, 159)
+            line-height: 12px
+
 </style>
